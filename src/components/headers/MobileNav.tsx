@@ -1,3 +1,4 @@
+import { Home, Search, ShoppingBag, User } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Input } from "../ui/input";
 
@@ -9,13 +10,20 @@ const navs = [
 	{ title: "Account", icon: "/navs/acc.svg", to: "/account" },
 ];
 
+const navItems = [
+	{ icon: Home, label: "Home", path: "/" },
+	{ icon: Search, label: "Search", path: "/search" },
+	{ icon: ShoppingBag, label: "Cart", path: "/cart" },
+	{ icon: User, label: "Profile", path: "/profile" },
+];
+
 export const MobileNav = () => {
 	return (
-		<header className="container space-y-2 p-2">
+		<header className="container space-y-5 p-2 bg-white shadow-sm h-28">
 			{/* TOP NAV */}
 			<section className="flex items-center justify-between">
 				<div className="flex flex-col gap-1">
-					<p className="text-[10px] font-normal text-gray-300">
+					<p className="text-[10px] font-normal text-blue-600">
 						Delivery address
 					</p>
 					<p className="text-xs font-medium text-gray-900">
@@ -38,23 +46,38 @@ export const MobileNav = () => {
 				</div>
 			</section>
 			<section className="flex">
-				<Input className="h-8 text-xs" placeholder="Search for items..." />
+				<Input
+					className="h-8 text-xs border-blue-100"
+					placeholder="Search for items..."
+				/>
 			</section>
 			{/* BOTTOM NAV */}
-			<section className="fixed bottom-0 left-0 right-0 z-0 border p-2">
+			<section className="fixed bottom-0 left-0 right-0 z-0 border p-2 bg-white shadow-md">
 				<div className="flex items-center justify-between">
-					{navs.map((nav, idx) => {
-						return (
-							<Link
-								key={idx}
-								to={nav.to}
-								className="flex flex-col items-center"
+					{navItems.map((item) => (
+						<Link
+							key={item.label}
+							to={item.path}
+							className="flex flex-col items-center"
+						>
+							<item.icon
+								className={`h-6 w-6 ${
+									location.pathname === item.path
+										? "text-blue-600"
+										: "text-gray-500"
+								}`}
+							/>
+							<span
+								className={`text-xs ${
+									location.pathname === item.path
+										? "text-blue-500"
+										: "text-gray-500"
+								}`}
 							>
-								<img src={nav.icon} className="h-5 w-5" alt="Icon" />
-								<p className="text-[9px] font-medium">{nav.title}</p>
-							</Link>
-						);
-					})}
+								{item.label}
+							</span>
+						</Link>
+					))}
 				</div>
 			</section>
 		</header>

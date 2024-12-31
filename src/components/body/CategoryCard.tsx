@@ -3,11 +3,15 @@ export const CategoryCard = ({
 	title,
 }: { img: string; title: string }) => {
 	return (
-		<article>
-			<section className="border shadow-md w-24 h-24 space-y-1 mx-auto">
-				<img src={img} alt={title} className="max-w-full object-fill" />
-				<p className="text-[9px] font-normal text-center">{title}</p>
+		<article className="space-y-2">
+			<section className="rounded-sm shadow-sm p-2 bg-white border border-blue-50">
+				<img
+					src={img}
+					alt={title}
+					className="max-w-full object-fill w-11 h-11 mx-auto"
+				/>
 			</section>
+			<p className="text-[9px] font-normal text-center">{title}</p>
 		</article>
 	);
 };
